@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomNavigationBarExample extends StatefulWidget {
   const BottomNavigationBarExample({super.key});
@@ -36,12 +37,6 @@ class _BottomNavigationBarExampleState
     ),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,40 +47,62 @@ class _BottomNavigationBarExampleState
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-        bottomNavigationBar: Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: const Color(0xff8E2D0E),
-            primaryColor: Colors.yellow,
+        bottomNavigationBar: NewWidget(selectedIndex: _selectedIndex)
+    );
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    super.key,
+    required int selectedIndex,
+  }) : _selectedIndex = selectedIndex;
+
+  final int _selectedIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        canvasColor: const Color(0xff8E2D0E),
+        primaryColor: Colors.yellow,
+      ),
+      child: BottomNavigationBar(
+        showUnselectedLabels: true,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dehaze),
+            label: '',
           ),
-          child: BottomNavigationBar(
-            showUnselectedLabels: true,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.dehaze),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Trang chủ',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.access_time),
-                label: 'Checkin',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.assignment),
-                label: 'Công việc',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle),
-                label: 'Hồ sơ',
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.black,
-            onTap: _onItemTapped,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Trang chủ',
           ),
-        ));
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_time),
+            label: 'Checkin',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Công việc',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Hồ sơ',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        onTap: (int index) {
+          if (index == 1) {
+            context.go('/');
+          }
+          if (index == 2) {
+            context.go('/login');
+          }
+        },
+      ),
+    );
   }
 }
