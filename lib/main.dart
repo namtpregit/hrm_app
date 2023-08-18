@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hrm_app/screens/page_home.dart';
 import 'package:hrm_app/screens/page_login.dart';
 import 'package:hrm_app/widgets/navigation_bottom.dart';
 
@@ -9,7 +10,7 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
   GoRoute(
     path: '/',
     builder: (BuildContext context, GoRouterState state) {
-      return const BottomNavigationBarExampleApp();
+      return const HomePage();
     },
   ),
   GoRoute(
