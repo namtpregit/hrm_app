@@ -37,6 +37,8 @@ class HomePage extends StatelessWidget {
               Header(),
               Box1(),
               BoxTask(),
+              BoxTask(),
+              BoxTask(),
               Text('Home'),
             ],
           ),
@@ -73,9 +75,18 @@ class Box1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: const Color(0xffE9F0F2),
         width: double.infinity,
         margin: const EdgeInsets.only(bottom: 16.0),
+        decoration: const BoxDecoration(
+          color: Color(0xffE9F0F2),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 4,
+              offset: Offset(2, 3), // Shadow position
+            ),
+          ],
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
           child: Column(
@@ -120,46 +131,89 @@ class BoxTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 10,
-      color: Colors.grey,
-      shadowColor: Colors.grey,
-      borderRadius: BorderRadius.circular(2),
       child: Container(
-        color: const Color(0xffE9F0F2),
+        decoration: const BoxDecoration(
+          color: Color(0xffE9F0F2),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 4,
+              offset: Offset(2, 3), // Shadow position
+            ),
+          ],
+        ),
         width: double.infinity,
-        margin: const EdgeInsets.only(bottom: 2.0),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '26-8-2023 (Thứ 4)',
-                style: TextStyle(fontWeight: FontWeight.bold),
+        margin: const EdgeInsets.only(bottom: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(color: Colors.white, width: 2.0))),
+              width: double.infinity,
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0),
+                child: Text(
+                  'Task được giao',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      fontFamily: 'Inter'),
+                ),
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffC7471E),
-                    textStyle: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            ListView(
+              padding: const EdgeInsets.all(8),
+              shrinkWrap: true,
+              children: const <Widget>[
+                Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Người giao:',
+                          style: TextStyle(fontSize: 14, fontFamily: 'Inter'),
+                        ),
+                        SizedBox(width: 12),
+                        Text(
+                          'Trần Văn Đức',
+                          style: TextStyle(fontSize: 14, fontFamily: 'Inter'),
+                        ),
+                      ],
+                    )),
+                Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Dự án:',
+                          style: TextStyle(fontSize: 14, fontFamily: 'Inter'),
+                        ),
+                        SizedBox(width: 12),
+                        Text(
+                          'Rends',
+                          style: TextStyle(fontSize: 14, fontFamily: 'Inter'),
+                        ),
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0),
+                  child: Expanded(
+                    child: Text(
+                      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                      style: TextStyle(fontSize: 14),
+                      softWrap: false,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis, //new
+                    ),
                   ),
-                  child: const Text('Checkin'),
                 ),
-                const VerticalDivider(),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffA9A5A3),
-                    textStyle: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  child: const Text('Checkout'),
-                ),
-              ])
-            ],
-          ),
+              ],
+            )
+          ],
         ),
       ),
     );

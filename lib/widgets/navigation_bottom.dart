@@ -101,6 +101,9 @@ class NewWidget extends StatelessWidget {
           if (index == 2) {
             context.go('/login');
           }
+          if (index == 4) {
+            context.go('/profile');
+          }
         },
       ),
     );
