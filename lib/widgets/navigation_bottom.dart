@@ -13,7 +13,7 @@ class _BottomNavigationBarExampleState
     extends State<BottomNavigationBarExample> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
@@ -40,14 +40,22 @@ class _BottomNavigationBarExampleState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xff8E2D0E),
-          title: const Text('BottomNavigationBar Sample'),
+      appBar: AppBar(
+        backgroundColor: const Color(0xff8E2D0E),
+        title: const Text('BottomNavigationBar Sample'),
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: NewWidget(selectedIndex: _selectedIndex),
+      drawer: Drawer(
+        child: Container(
+          margin: const EdgeInsets.only(top: 20.0),
+          child: const Column(
+            children: <Widget>[Text('aaaaaaaaaa')],
+          ),
         ),
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: NewWidget(selectedIndex: _selectedIndex)
+      ),
     );
   }
 }
@@ -95,6 +103,13 @@ class NewWidget extends StatelessWidget {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.black,
         onTap: (int index) {
+          if (index == 0) {
+            const Positioned(
+              child: Text("Lorem ipsum"),
+              left: 24.0,
+              top: 24.0,
+            );
+          }
           if (index == 1) {
             context.go('/');
           }

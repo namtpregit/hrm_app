@@ -42,7 +42,8 @@ class HomePage extends StatelessWidget {
               Text('Home'),
             ],
           ),
-          bottomNavigationBar: const NewWidget(selectedIndex: selectedIndex)),
+          bottomNavigationBar: const NewWidget(selectedIndex: selectedIndex)
+      ),
     );
   }
 }
